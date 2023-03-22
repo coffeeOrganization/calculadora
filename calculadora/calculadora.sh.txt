@@ -1,0 +1,75 @@
+#! /bin/bash
+
+function sumar(){
+  echo "SUMAR"
+  echo "$1+$2= $(($1+$2))"
+}
+
+function restar(){
+  echo "RESTAR"
+  echo "$1-$2= $(($1-$2))"
+}
+
+function multiplicar(){
+  echo "MULTIPLICAR $1 $2"
+  echo "$1*$2= $(($1*$2))"
+}
+
+function dividir(){
+  echo "DIVIDIR"
+  echo "$1/$2= $(($1/$2))" 2>&1 | echo
+}
+
+function consiente(){
+  echo "CONSIENTE"
+  echo "$1%$2= $(($1%$2))"
+}
+
+echo "Calculadora"
+
+salir=1 #salir=true
+
+while [ $salir -ne 0 ]
+do
+  echo "Elija una operacion"
+  echo "1-sumar"
+  echo "2-restar"
+  echo "3-multiplicar"
+  echo "4-dividir"
+  echo "5-consiente"
+  echo "0-salir"
+  read opcion
+
+  if [ $opcion -ne 0 ]
+  then
+    read -p "Introduzca x: " x
+    read -p "Introduzca y: " y
+  fi
+
+  case $opcion in
+  1)
+   sumar $x $y
+  ;;
+  2)
+    restar $x $y
+  ;;
+  3)
+    multiplicar $x $y
+  ;;
+  4)
+    dividir $x $y
+  ;;
+  5)
+    consiente $x $y
+  ;;
+  0)
+    salir=0 #salir=false
+    echo "fin"
+  ;;
+  *)
+    echo "Opcion incorecta, vuelva a introduzcir una opcion"
+  ;;
+  esac
+done
+
+echo "Programa finalizado"
